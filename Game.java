@@ -34,23 +34,32 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room conserjeria, cnp, profes, primero, segundo, fp2, fp1, bachiller1, bachiller2;
       
         // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        conserjeria = new Room("conserjeria del instituto"); //outside
+        cnp = new Room("cuerpo nacional de policia"); //theater
+        profes = new Room("sala profesores"); //pub
+        fp2 = new Room("fp2");//lab
+        fp1 = new Room("fp1");
+        primero = new Room("primer piso");
+        segundo = new Room("segundo piso");
+        bachiller1 = new Room("bachiller1");
+        bachiller2 = new Room("bachiller2");
+        
         
         // initialise room exits
-        outside.setExits(null, theater, lab, pub);
-        theater.setExits(null, null, null, outside);
-        pub.setExits(null, outside, null, null);
-        lab.setExits(outside, office, null, null);
-        office.setExits(null, null, null, lab);
+        conserjeria.setExits(null, profes, cnp, null);
+        cnp.setExits(conserjeria, null, null, null);
+        profes.setExits(primero, null, null, conserjeria);
+        primero.setExits(segundo, fp2, profes, bachiller2);
+        fp2.setExits(null, null, null, primero);
+        bachiller2.setExits(null, primero, null, null);
+        segundo.setExits(null, fp1, primero, bachiller1);
+        fp1.setExits(null, null, null, segundo);
+        bachiller1.setExits(null, segundo, null, null);
 
-        currentRoom = outside;  // start game outside
+        currentRoom = cnp;  // start game outside
     }
 
     /**
