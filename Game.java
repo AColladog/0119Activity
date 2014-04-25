@@ -48,15 +48,15 @@ public class Game
         bachiller2 = new Room("bachiller2");
 
         // initialise room exits
-        conserjeria.setExits(null,null, cnp, profes);
-        cnp.setExits(conserjeria, null, null, null);
-        profes.setExits(primero, conserjeria, null,null );
-        primero.setExits(segundo, fp2, profes, bachiller2);
-        fp2.setExits(null, null, null, primero);
-        bachiller2.setExits(null, primero, null, null);
-        segundo.setExits(null, fp1, primero, bachiller1);
-        fp1.setExits(null, null, null, segundo);
-        bachiller1.setExits(null, segundo, null, null);
+        conserjeria.setExits(null,null, cnp, null, profes, null);
+        cnp.setExits(conserjeria, null, null, null, null, null);
+        profes.setExits(primero, null, null,null, null, conserjeria);
+        primero.setExits(segundo, fp2, profes, bachiller2, null, null);
+        fp2.setExits(null, null, null, primero, null, null);
+        bachiller2.setExits(null, primero, null, null, null, null);
+        segundo.setExits(null, fp1, primero, bachiller1, null, null);
+        fp1.setExits(null, null, null, segundo, null, null);
+        bachiller1.setExits(null, segundo, null, null, null, null);
 
         currentRoom = cnp;  // start game outside
     }
@@ -164,6 +164,12 @@ public class Game
         if(direction.equals("west")) {
             nextRoom = currentRoom.westExit;
         }
+        if(direction.equals("northeast")) {
+            nextRoom = currentRoom.northeastExit;
+        }
+        if(direction.equals("southwest")) {
+            nextRoom = currentRoom.southwestExit;
+        }
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
@@ -204,6 +210,12 @@ public class Game
         }
         if(currentRoom.westExit != null) {
             System.out.print("west ");
+        }
+        if(currentRoom.northeastExit != null) {
+            System.out.print("northeast ");
+        }
+        if(currentRoom.southwestExit != null) {
+            System.out.print("southwest ");
         }
         System.out.println(); 
     }
