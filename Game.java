@@ -147,8 +147,10 @@ public class Game
             System.out.println("Go where?");
             return;
         }
+        Room nextRoom = currentRoom.getExit(command.getSecondWord());
 
-        String direction = command.getSecondWord();
+        /**
+         * String direction = command.getSecondWord();
 
         // Try to leave current room.
         Room nextRoom = null;
@@ -170,7 +172,7 @@ public class Game
         if(direction.equals("southwest")) {
             nextRoom = currentRoom.southwestExit;
         }
-
+        */
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
@@ -178,6 +180,7 @@ public class Game
             currentRoom = nextRoom;
             printLocationInfo();
         }
+         
     }
 
     /** 

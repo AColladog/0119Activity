@@ -14,13 +14,13 @@
  */
 public class Room 
 {
-    public String description;
-    public Room northExit;
-    public Room southExit;
-    public Room eastExit;
-    public Room westExit;
-    public Room northeastExit;
-    public Room southwestExit;
+    private String description;
+    private Room northExit;
+    private Room southExit;
+    private Room eastExit;
+    private Room westExit;
+    private Room northeastExit;
+    private Room southwestExit;
 
     /**
      * Create a room described "description". Initially, it has
@@ -65,6 +65,33 @@ public class Room
     public String getDescription()
     {
         return description;
+    }
+    
+    /**
+     * Toma como parámetro una cadena que representa una dirección.
+     * @return el objeto de la clase Room asociado a esa salida o null si no hay salida.
+     */
+    public Room getExit(String direccion){
+        Room out = null;
+        if(direccion.equals("north")){
+            out = northExit;
+        }
+        if(direccion.equals("east")){
+            out = eastExit;
+        }
+        if(direccion.equals("south")){
+            out = southExit;
+        }
+        if(direccion.equals("west")){
+            out = westExit;
+        }
+        if(direccion.equals("northeast")){
+            out = northeastExit;
+        }
+        if(direccion.equals("southwest")){
+            out = southwestExit;
+        }
+        return out;
     }
 
 }
