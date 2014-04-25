@@ -48,9 +48,9 @@ public class Game
         bachiller2 = new Room("bachiller2");
 
         // initialise room exits
-        conserjeria.setExits(null, profes, cnp, null);
+        conserjeria.setExits(null,null, cnp, profes);
         cnp.setExits(conserjeria, null, null, null);
-        profes.setExits(primero, null, null, conserjeria);
+        profes.setExits(primero, conserjeria, null,null );
         primero.setExits(segundo, fp2, profes, bachiller2);
         fp2.setExits(null, null, null, primero);
         bachiller2.setExits(null, primero, null, null);
@@ -88,9 +88,7 @@ public class Game
         System.out.println("Welcome to the World of Zuul!");
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type 'help' if you need help.");
-        System.out.println();
-        System.out.println("You are " + currentRoom.getDescription());
-        System.out.print("Exits: ");
+        System.out.println();        
         printLocationInfo();
     }
 
@@ -172,8 +170,6 @@ public class Game
         }
         else {
             currentRoom = nextRoom;
-            System.out.println("You are " + currentRoom.getDescription());
-            System.out.print("Exits: ");
             printLocationInfo();
         }
     }
@@ -195,6 +191,8 @@ public class Game
     }
 
     private void printLocationInfo(){
+        System.out.println("You are " + currentRoom.getDescription());
+        System.out.print("Exits: ");
         if(currentRoom.northExit != null) {
             System.out.print("north ");
         }
