@@ -66,7 +66,7 @@ public class Room
     {
         return description;
     }
-    
+
     /**
      * Toma como parámetro una cadena que representa una dirección.
      * @return el objeto de la clase Room asociado a esa salida o null si no hay salida.
@@ -94,4 +94,32 @@ public class Room
         return out;
     }
 
+    /**
+     * Return a description of the room's exits.
+     * For example: "Exits: north east west"
+     *
+     * @ return A description of the available exits.
+     */
+    public String getExitString(){
+        String localizacion = "Exits: ";
+        if(northExit != null) {
+            localizacion = localizacion + " north ";
+        }
+        if(eastExit != null) {
+            localizacion = localizacion + " east ";
+        }
+        if(southExit != null) {
+            localizacion = localizacion + " south ";
+        }
+        if(westExit != null) {
+            localizacion = localizacion + " west ";
+        }
+        if(northeastExit != null) {
+            localizacion = localizacion + " northeast ";
+        }
+        if(southwestExit != null) {
+            localizacion = localizacion + " southwest ";
+        }
+        return localizacion; 
+    }
 }

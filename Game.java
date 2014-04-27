@@ -201,7 +201,8 @@ public class Game
 
     private void printLocationInfo(){
         System.out.println("You are " + currentRoom.getDescription());
-        System.out.print("Exits: ");
+        /**
+         * System.out.print("Exits: ");
         if(currentRoom.northExit != null) {
             System.out.print("north ");
         }
@@ -220,6 +221,8 @@ public class Game
         if(currentRoom.southwestExit != null) {
             System.out.print("southwest ");
         }
-        System.out.println(); 
+        System.out.println();
+         */
+        System.out.println(currentRoom.getExitString());
     }
 }
