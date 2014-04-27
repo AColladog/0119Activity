@@ -34,7 +34,7 @@ public class Game
      */
     private void createRooms()
     {
-        Room conserjeria, cnp, profes, primero, segundo, fp2, fp1, bachiller1, bachiller2;
+        Room conserjeria, cnp, profes, primero, segundo, fp2, fp1, bachiller1, bachiller2, patio;
 
         // create the rooms
         conserjeria = new Room("conserjeria del instituto"); //outside
@@ -46,17 +46,19 @@ public class Game
         segundo = new Room("segundo piso");
         bachiller1 = new Room("bachiller1");
         bachiller2 = new Room("bachiller2");
+        patio = new Room("patio");
 
         // initialise room exits
-        conserjeria.setExits(null,null, cnp, null, profes, null);
-        cnp.setExits(conserjeria, null, null, null, null, null);
-        profes.setExits(primero, null, null,null, null, conserjeria);
-        primero.setExits(segundo, fp2, profes, bachiller2, null, null);
-        fp2.setExits(null, null, null, primero, null, null);
-        bachiller2.setExits(null, primero, null, null, null, null);
-        segundo.setExits(null, fp1, primero, bachiller1, null, null);
-        fp1.setExits(null, null, null, segundo, null, null);
-        bachiller1.setExits(null, segundo, null, null, null, null);
+        conserjeria.setExits(null,null, cnp, null, profes, null, patio, null);
+        cnp.setExits(conserjeria, null, null, null, null, null, null, null);
+        profes.setExits(primero, null, null,null, null, conserjeria, null, null);
+        primero.setExits(segundo, fp2, profes, bachiller2, null, null, null, null);
+        fp2.setExits(null, null, null, primero, null, null, null, null);
+        bachiller2.setExits(null, primero, null, null, null, null, null, null);
+        segundo.setExits(null, fp1, primero, bachiller1, null, null, null, null);
+        fp1.setExits(null, null, null, segundo, null, null, null, null);
+        bachiller1.setExits(null, segundo, null, null, null, null, null, null);
+        patio.setExits(null,null, null, null, null, null, null, conserjeria);
 
         currentRoom = cnp;  // start game outside
     }
