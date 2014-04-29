@@ -49,8 +49,37 @@ public class Game
         patio = new Room("patio");
 
         // initialise room exits
-        conserjeria.setExits(null,null, cnp, null, profes, null, patio, null);
-        cnp.setExits(conserjeria, null, null, null, null, null, null, null);
+        // conserjeria n, e, s, w, ne, sw, se, nw
+        conserjeria.setExit("southExit", cnp);
+        conserjeria.setExit("northeastExit", profes);
+        conserjeria.setExit("southwestExit", patio);
+        //cnp
+        cnp.setExit("northExit", conserjeria);
+        //primero
+        primero.setExit("northExit", segundo);
+        primero.setExit("eastExit", fp2);
+        primero.setExit("southExit", profes);
+        primero.setExit("westExit", bachiller2);
+        //fp2
+        fp2.setExit("westExit", primero);
+        //bachiller2
+        bachiller2.setExit("eastExit", primero);
+        //segundo
+        segundo.setExit("eastExit", fp1);
+        segundo.setExit("southExit", primero);
+        segundo.setExit("westExit", bachiller1);
+        //fp1
+        fp1.setExit("westExit", segundo);
+        //bachiller1
+        bachiller1.setExit("eastExit", segundo);
+        //patio
+        patio.setExit("northwestExit", conserjeria);
+        //profes
+        profes.setExit("northExit", primero);
+        profes.setExit("southwestExit", conserjeria);
+        
+        /**
+         * cnp.setExits(conserjeria, null, null, null, null, null, null, null);
         profes.setExits(primero, null, null,null, null, conserjeria, null, null);
         primero.setExits(segundo, fp2, profes, bachiller2, null, null, null, null);
         fp2.setExits(null, null, null, primero, null, null, null, null);
@@ -59,8 +88,9 @@ public class Game
         fp1.setExits(null, null, null, segundo, null, null, null, null);
         bachiller1.setExits(null, segundo, null, null, null, null, null, null);
         patio.setExits(null,null, null, null, null, null, null, conserjeria);
-
-        currentRoom = cnp;  // start game outside
+        
+         */
+         currentRoom = cnp;  // start game outside
     }
 
     /**
@@ -178,8 +208,9 @@ public class Game
     }
 
     private void printLocationInfo(){
-        System.out.println("You are " + currentRoom.getDescription());
+        //System.out.println("You are " + currentRoom.getDescription());
         
-        System.out.println(currentRoom.getExitString());
+        //System.out.println(currentRoom.getExitString());
+        System.out.println(currentRoom.getLongDescription());
     }
 }
