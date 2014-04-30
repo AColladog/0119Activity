@@ -15,8 +15,9 @@ import java.util.HashMap;
  */
 public class Room 
 {
-    private String description;
-    private HashMap<String, Room> location;;
+    private String description, item;
+    private HashMap<String, Room> location;
+    private double peso;
 
     /**
      * Create a room described "description". Initially, it has
@@ -24,10 +25,12 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description) 
+    public Room(String description, String item, double peso) 
     {
         this.description = description;
         location = new HashMap<>();
+        this.item = item;
+        this.peso = peso;
 
     }
 
@@ -47,6 +50,22 @@ public class Room
     {
         return description;
     }
+    
+    /**
+     * @return The item in the room.
+     */
+    public String getItem()
+    {
+        return item;
+    }
+    
+    /**
+     * @return The description of the room.
+     */
+    public double getPeso()
+    {
+        return peso;
+    }    
 
     /**
      * Toma como parámetro una cadena que representa una dirección.
@@ -62,7 +81,7 @@ public class Room
         }
         return out;
     }
-
+    
     /**
      * Return a description of the room's exits.
      * For example: "Exits: north east west"

@@ -37,16 +37,16 @@ public class Game
         Room conserjeria, cnp, profes, primero, segundo, fp2, fp1, bachiller1, bachiller2, patio;
 
         // create the rooms
-        conserjeria = new Room("conserjeria"); //outside
-        cnp = new Room("comisaria"); //theater
-        profes = new Room("profesores"); //pub
-        fp2 = new Room("fp2");//lab
-        fp1 = new Room("fp1");
-        primero = new Room("primero");
-        segundo = new Room("segundo");
-        bachiller1 = new Room("bachiller1");
-        bachiller2 = new Room("bachiller2");
-        patio = new Room("patio");
+        conserjeria = new Room("conserjeria", "fotocopiadora", 45); 
+        cnp = new Room("comisaria", "cartera", 1.5); 
+        profes = new Room("profesores", "mesa", 80); 
+        fp2 = new Room("fp2", "silla", 7);
+        fp1 = new Room("fp1", "pda", 2);
+        primero = new Room("primero", "maceta", 5);
+        segundo = new Room("segundo", "papelera", 0.5);
+        bachiller1 = new Room("bachiller1", "tiza", 0.04);
+        bachiller2 = new Room("bachiller2", "pizarra", 30);
+        patio = new Room("patio", "porteria", 60);
 
         // initialise room exits
         // conserjeria n, e, s, w, ne, sw, se, nw
@@ -134,7 +134,9 @@ public class Game
             goRoom(command);
         }
         else if (commandWord.equals("look")) {
-            printLocationInfo();
+            System.out.println();
+            printLocationInfo();            
+            printItemInfo();            
         }
         else if (commandWord.equals("eat")) {
             System.out.println("You have eaten now and you are not hungry any more");
@@ -204,5 +206,7 @@ public class Game
         System.out.println(currentRoom.getLongDescription());
     }
     
-    
+    private void printItemInfo(){
+        System.out.println("Localizada: " + currentRoom.getItem() + " \tQue pesa: " + currentRoom.getPeso() + "Kg");
+    }
 }
