@@ -74,6 +74,6 @@ public class Parser
      * imprime por pantalla los comandos válidos
      */
     public void imprimeComandos(){
-    
+        commands.showAll();
     }
 }
