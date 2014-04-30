@@ -136,6 +136,9 @@ public class Game
         else if (commandWord.equals("look")) {
             printLocationInfo();
         }
+        else if (commandWord.equals("eat")) {
+            System.out.println("You have eaten now and you are not hungry any more");
+        }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }
