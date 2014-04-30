@@ -44,10 +44,8 @@ public class CommandWords
      */
     public void showAll(){
         System.out.println("Valid command words: ");
-        String comandosValidos = "";
         for(String comando : validCommands){
-            comandosValidos = comandosValidos + comando + " ";
-        }
-        System.out.println();
+            System.out.print(comando + " ");
+        }        
     }
 }

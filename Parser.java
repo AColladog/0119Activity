@@ -69,4 +69,11 @@ public class Parser
     public CommandWords retornaComandos(){        
         return commands;    
     }
+    
+    /**
+     * imprime por pantalla los comandos válidos
+     */
+    public void imprimeComandos(){
+    
+    }
 }
