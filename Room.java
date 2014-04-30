@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Set;
 /**
  * Class Room - a room in an adventure game.
  *
@@ -71,12 +72,12 @@ public class Room
      * Toma como parámetro una cadena que representa una dirección.
      * @return el objeto de la clase Room asociado a esa salida o null si no hay salida.
      */
-    public Room getExit(String direccion){
+    public Room getExit(String direccion){        
         Room out = null;
-        for(Room a : location.values()){
-            if(direccion.equals(a.getDescription()))
+        for(String a : location.keySet()){
+            if(direccion.equals(a))
             {
-                out = a;
+                out = location.get(a);
             }
         }
         return out;
@@ -89,11 +90,11 @@ public class Room
      * @ return A description of the available exits.
      */
     public String getExitString(){
-        String localizacion = "";
-        for(Room a : location.values()){
-            localizacion = localizacion + a.getDescription() + "  ";
+        String out = "";
+        for(String a : location.keySet()){
+            out += a + "  ";
         } 
-        return localizacion; 
+        return out; 
     }
 
     /**

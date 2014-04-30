@@ -50,33 +50,33 @@ public class Game
 
         // initialise room exits
         // conserjeria n, e, s, w, ne, sw, se, nw
-        conserjeria.setExit("southExit", cnp);
-        conserjeria.setExit("northeastExit", profes);
-        conserjeria.setExit("southwestExit", patio);
+        conserjeria.setExit("south", cnp);
+        conserjeria.setExit("northeast", profes);
+        conserjeria.setExit("southwest", patio);
         //cnp
-        cnp.setExit("northExit", conserjeria);
+        cnp.setExit("north", conserjeria);
         //primero
-        primero.setExit("northExit", segundo);
-        primero.setExit("eastExit", fp2);
-        primero.setExit("southExit", profes);
-        primero.setExit("westExit", bachiller2);
+        primero.setExit("north", segundo);
+        primero.setExit("east", fp2);
+        primero.setExit("south", profes);
+        primero.setExit("west", bachiller2);
         //fp2
-        fp2.setExit("westExit", primero);
+        fp2.setExit("west", primero);
         //bachiller2
-        bachiller2.setExit("eastExit", primero);
+        bachiller2.setExit("east", primero);
         //segundo
-        segundo.setExit("eastExit", fp1);
-        segundo.setExit("southExit", primero);
-        segundo.setExit("westExit", bachiller1);
+        segundo.setExit("east", fp1);
+        segundo.setExit("south", primero);
+        segundo.setExit("west", bachiller1);
         //fp1
-        fp1.setExit("westExit", segundo);
+        fp1.setExit("west", segundo);
         //bachiller1
-        bachiller1.setExit("eastExit", segundo);
+        bachiller1.setExit("east", segundo);
         //patio
-        patio.setExit("northwestExit", conserjeria);
+        patio.setExit("northwest", conserjeria);
         //profes
-        profes.setExit("northExit", primero);
-        profes.setExit("southwestExit", conserjeria);
+        profes.setExit("north", primero);
+        profes.setExit("southwest", conserjeria);
         
         currentRoom = cnp;  // start game outside
     }
