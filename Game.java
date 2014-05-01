@@ -37,16 +37,31 @@ public class Game
         Room conserjeria, cnp, profes, primero, segundo, fp2, fp1, bachiller1, bachiller2, patio;
 
         // create the rooms
-        conserjeria = new Room("conserjeria", "fotocopiadora", 45); 
-        cnp = new Room("comisaria", "cartera", 1.5); 
-        profes = new Room("profesores", "mesa", 80); 
-        fp2 = new Room("fp2", "silla", 7);
-        fp1 = new Room("fp1", "pda", 2);
-        primero = new Room("primero", "maceta", 5);
-        segundo = new Room("segundo", "papelera", 0.5);
-        bachiller1 = new Room("bachiller1", "tiza", 0.04);
-        bachiller2 = new Room("bachiller2", "pizarra", 30);
-        patio = new Room("patio", "porteria", 60);
+        conserjeria = new Room("conserjeria");         
+        cnp = new Room("comisaria"); 
+        profes = new Room("profesores"); 
+        fp2 = new Room("fp2");
+        fp1 = new Room("fp1");
+        primero = new Room("primero");
+        segundo = new Room("segundo");
+        bachiller1 = new Room("bachiller1");
+        bachiller2 = new Room("bachiller2");
+        patio = new Room("patio");
+        // damos items a las rooms
+        conserjeria.addItem("fotocopiadora", 45);
+        cnp.addItem("cartera", 1.5);
+        cnp.addItem("navaja", 0.3);
+        profes.addItem("mesa", 80);
+        fp2.addItem("silla", 7);
+        fp2.addItem("tijera", 7);
+        fp1.addItem("pda", 2);
+        primero.addItem("maceta", 5);
+        segundo.addItem("papelera", 0.5);
+        bachiller1.addItem("tiza", 0.04);
+        bachiller1.addItem("pizarra", 30);
+        bachiller2.addItem("grapadora", 0.6);
+        patio.addItem("porteria", 60);
+        patio.addItem("canasta", 300);
 
         // initialise room exits
         // conserjeria n, e, s, w, ne, sw, se, nw
@@ -207,6 +222,9 @@ public class Game
     }
     
     private void printItemInfo(){
-        System.out.println("Localizada: " + currentRoom.getItem() + " \tQue pesa: " + currentRoom.getPeso() + "Kg");
+        for(Item a : currentRoom.getItems()){
+            System.out.println("Localizada: " + a.getItem() + " \tQue pesa: " + a.getPeso() + "Kg");
+        }
+        //System.out.println("Localizada: " + currentRoom.getItem() + " \tQue pesa: " + currentRoom.getPeso() + "Kg");
     }
 }
