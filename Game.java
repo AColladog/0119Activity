@@ -19,6 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Room habitacionAnterior;
 
     /**
      * Create the game and initialise its internal map.
@@ -27,6 +28,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+        habitacionAnterior = null;
     }
 
     /**
@@ -159,6 +161,9 @@ public class Game
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }
+        else if (commandWord.equals("back")) {
+            goBack();
+        }
 
         return wantToQuit;
     }
@@ -195,6 +200,7 @@ public class Game
             System.out.println("There is no door!");
         }
         else {
+            habitacionAnterior = currentRoom;
             currentRoom = nextRoom;
             printLocationInfo();
         }
@@ -226,5 +232,14 @@ public class Game
             System.out.println("Localizada: " + a.getItem() + " \tQue pesa: " + a.getPeso() + "Kg");
         }
         //System.out.println("Localizada: " + currentRoom.getItem() + " \tQue pesa: " + currentRoom.getPeso() + "Kg");
+    }
+    
+    private void goBack(){
+        if(habitacionAnterior == null){
+            System.out.println("No ha habido desplazamiento previo");
+        }else{
+            currentRoom = habitacionAnterior;
+            printLocationInfo();
+        }
     }
 }
