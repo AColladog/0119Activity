@@ -1,4 +1,5 @@
 import java.util.Stack;
+import java.util.ArrayList;
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -21,6 +22,8 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private Stack<Room> habitacionAnterior;
+    private ArrayList<Item> itemsPlayer;
+    private static final double PESO_MAXIMO = 50;
 
     /**
      * Create the game and initialise its internal map.
@@ -30,6 +33,7 @@ public class Game
         createRooms();
         parser = new Parser();
         habitacionAnterior = new Stack<>();
+        itemsPlayer = new ArrayList<>();
     }
 
     /**
@@ -51,20 +55,20 @@ public class Game
         bachiller2 = new Room("bachiller2");
         patio = new Room("patio");
         // damos items a las rooms
-        conserjeria.addItem("fotocopiadora", 45);
-        cnp.addItem("cartera", 1.5);
-        cnp.addItem("navaja", 0.3);
-        profes.addItem("mesa", 80);
-        fp2.addItem("silla", 7);
-        fp2.addItem("tijera", 7);
-        fp1.addItem("pda", 2);
-        primero.addItem("maceta", 5);
-        segundo.addItem("papelera", 0.5);
-        bachiller1.addItem("tiza", 0.04);
-        bachiller1.addItem("pizarra", 30);
-        bachiller2.addItem("grapadora", 0.6);
-        patio.addItem("porteria", 60);
-        patio.addItem("canasta", 300);
+        conserjeria.addItem("fotocopiadora", 45, true);
+        cnp.addItem("cartera", 1.5, true);
+        cnp.addItem("navaja", 0.3, true);
+        profes.addItem("mesa", 80, false);
+        fp2.addItem("silla", 7, true);
+        fp2.addItem("tijera", 7, true);
+        fp1.addItem("pda", 2, true);
+        primero.addItem("maceta", 5, true);
+        segundo.addItem("papelera", 0.5, true);
+        bachiller1.addItem("tiza", 0.04, true);
+        bachiller1.addItem("pizarra", 30, false);
+        bachiller2.addItem("grapadora", 0.6, true);
+        patio.addItem("porteria", 60, false);
+        patio.addItem("canasta", 300, false);
 
         // initialise room exits
         // conserjeria n, e, s, w, ne, sw, se, nw
@@ -165,6 +169,16 @@ public class Game
         else if (commandWord.equals("back")) {
             goBack();
         }
+        else if(commandWord.equals("take")){
+            takeItem(command);
+        }
+        else if(commandWord.equals("items")){
+            System.out.println();
+            printItemsPlayer();
+        }
+        else if(commandWord.equals("drop")){
+            dropItem(command);
+        }
 
         return wantToQuit;
     }
@@ -241,6 +255,66 @@ public class Game
         }else{
             currentRoom = habitacionAnterior.pop();
             printLocationInfo();
+        }
+    }
+    
+    private void takeItem(Command command){
+        boolean existe = false;
+        for(Item a : currentRoom.getItems()){
+            if(a.getItem().equals(command.getSecondWord())){
+                existe = true;
+                if(a.getCanTake()){
+                    if(pesoTotal(a.getPeso()) < PESO_MAXIMO){
+                        itemsPlayer.add(a);
+                        currentRoom.getItems().remove(a);
+                        return;
+                    }else{
+                        System.out.println("Sobrepasa los límites del peso");
+                    }
+                }else{
+                    System.out.println("Este item no se puede mover, es fijo");
+                }
+            }
+        }
+        if(!existe){
+            System.out.println("Este item no existe en la habitación");            
+        }
+    }
+    
+    private double pesoTotal(double pesoItem){
+        double total = 0;
+        for(Item a : itemsPlayer){
+            total += a.getPeso();
+        }
+        return (total + pesoItem);
+    }
+    
+    private void printItemsPlayer(){
+        System.out.println("El jugador porta: ");
+        for(Item a : itemsPlayer){
+            System.out.println(a.getItem() + " \tQue pesa: " + a.getPeso());
+        }
+        System.out.println("El jugador arrastra: " + pesoTotal(0) + "Kg\tDe un máximo que puede pujar de: " + PESO_MAXIMO);
+    }    
+    
+    private void dropItem(Command command){
+        boolean existe = false;
+        int count = 0;
+        for(Item a : itemsPlayer){
+            count++;
+            if(a.getItem().equals(command.getSecondWord())){
+                existe = true;
+                currentRoom.getItems().add(a);
+                itemsPlayer.remove(a);     
+                return;
+            }
+        }
+        if(count < 1){
+            System.out.println("No hay nada que dejar");
+        }else{
+            if(!existe){
+                System.out.println("Ese item no se encuentra en posesión");
+            }
         }
     }
 }

@@ -47,8 +47,8 @@ public class Room
     /**
      * creamos el ArrayList de items
      */
-    public void addItem(String item, double peso){
-        items.add(new Item(item, peso));
+    public void addItem(String item, double peso, boolean canTake){
+        items.add(new Item(item, peso, canTake));
     }
     
     /**
