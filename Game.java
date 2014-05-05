@@ -172,6 +172,10 @@ public class Game
         else if(commandWord.equals("take")){
             takeItem(command);
         }
+        else if(commandWord.equals("items")){
+            System.out.println();
+            printItemsPlayer();
+        }
 
         return wantToQuit;
     }
@@ -280,5 +284,13 @@ public class Game
             total += a.getPeso();
         }
         return (total + pesoItem);
+    }
+    
+    private void printItemsPlayer(){
+        System.out.println("El jugador porta: ");
+        for(Item a : itemsPlayer){
+            System.out.println(a.getItem() + " \tQue pesa: " + a.getPeso());
+        }
+        System.out.println("El jugador arrastra: " + pesoTotal(0) + "Kg\tDe un máximo que puede pujar de: " + PESO_MAXIMO);
     }
 }
