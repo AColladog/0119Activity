@@ -176,6 +176,9 @@ public class Game
             System.out.println();
             printItemsPlayer();
         }
+        else if(commandWord.equals("drop")){
+            dropItem(command);
+        }
 
         return wantToQuit;
     }
@@ -292,5 +295,26 @@ public class Game
             System.out.println(a.getItem() + " \tQue pesa: " + a.getPeso());
         }
         System.out.println("El jugador arrastra: " + pesoTotal(0) + "Kg\tDe un máximo que puede pujar de: " + PESO_MAXIMO);
+    }    
+    
+    private void dropItem(Command command){
+        boolean existe = false;
+        int count = 0;
+        for(Item a : itemsPlayer){
+            count++;
+            if(a.getItem().equals(command.getSecondWord())){
+                existe = true;
+                currentRoom.getItems().add(a);
+                itemsPlayer.remove(a);     
+                return;
+            }
+        }
+        if(count < 1){
+            System.out.println("No hay nada que dejar");
+        }else{
+            if(!existe){
+                System.out.println("Ese item no se encuentra en posesión");
+            }
+        }
     }
 }
