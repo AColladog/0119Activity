@@ -173,7 +173,7 @@ public class Game
         }
         else if(commandWord.equals("items")){
             System.out.println();
-            printItemsPlayer();
+            player.printItemsPlayer();
         }
         else if(commandWord.equals("drop")){
             dropItem(command);
@@ -278,29 +278,19 @@ public class Game
         if(!existe){
             System.out.println("Este item no existe en la habitación");            
         }
-    }
-    
-    private void printItemsPlayer(){
-        System.out.println("El jugador porta: ");
-        for(Item a : itemsPlayer){
-            System.out.println(a.getItem() + " \tQue pesa: " + a.getPeso());
-        }
-        System.out.println("El jugador arrastra: " + pesoTotal(0) + "Kg\tDe un máximo que puede pujar de: " + PESO_MAXIMO);
-    }    
+    }   
     
     private void dropItem(Command command){
         boolean existe = false;
-        int count = 0;
-        for(Item a : itemsPlayer){
-            count++;
+        for(Item a : player.getItemsPlayer()){
             if(a.getItem().equals(command.getSecondWord())){
                 existe = true;
                 currentRoom.getItems().add(a);
-                itemsPlayer.remove(a);     
+                player.removeItemsPlayer(a);     
                 return;
             }
         }
-        if(count < 1){
+        if(player.getItemsPlayer() == null || player.getItemsPlayer().size() == 0){
             System.out.println("No hay nada que dejar");
         }else{
             if(!existe){

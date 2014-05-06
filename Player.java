@@ -41,4 +41,16 @@ public class Player
     public void addItemsPlayer(Item item){
         itemsPlayer.add(item);
     } 
+    
+    public void printItemsPlayer(){
+        System.out.println("El jugador porta: ");
+        for(Item a : itemsPlayer){
+            System.out.println(a.getItem() + " \tQue pesa: " + a.getPeso());
+        }
+        System.out.println("El jugador arrastra: " + pesoTotal(0) + "Kg\tDe un máximo que puede pujar de: " + PESO_MAXIMO);
+    }
+    
+    public void removeItemsPlayer(Item item){
+        itemsPlayer.remove(item);
+    }
 }
