@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 /**
- * Write a description of class Player here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Esta clase nos deja refactorizar el código anterior, creando aquí todo lo necesario para el jugador
+ * Ponemos en esta clase todo lo referente al jugador, liberando código
+ * @author (ACG) 
+ * @version (1.1)
  */
 public class Player
 {
