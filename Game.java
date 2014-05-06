@@ -22,8 +22,6 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private Stack<Room> habitacionAnterior;
-    private ArrayList<Item> itemsPlayer;
-    private static final double PESO_MAXIMO = 50;
 
     /**
      * Create the game and initialise its internal map.
@@ -244,7 +242,7 @@ public class Game
     
     private void printItemInfo(){
         for(Item a : currentRoom.getItems()){
-            System.out.println("Localizada: " + a.getItem() + " \tQue pesa: " + a.getPeso() + "Kg");
+            System.out.println("Localizada: " + a.getItem() + " \tQue pesa: " + a.getPeso() + "Kg\tTransportable: " + a.getCanTake());
         }
         //System.out.println("Localizada: " + currentRoom.getItem() + " \tQue pesa: " + currentRoom.getPeso() + "Kg");
     }
