@@ -22,8 +22,7 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private Stack<Room> habitacionAnterior;
-    private ArrayList<Item> itemsPlayer;
-    private static final double PESO_MAXIMO = 50;
+    private Player player;
 
     /**
      * Create the game and initialise its internal map.
@@ -33,7 +32,7 @@ public class Game
         createRooms();
         parser = new Parser();
         habitacionAnterior = new Stack<>();
-        itemsPlayer = new ArrayList<>();
+        player = new Player();
     }
 
     /**
@@ -174,7 +173,7 @@ public class Game
         }
         else if(commandWord.equals("items")){
             System.out.println();
-            printItemsPlayer();
+            player.printItemsPlayer();
         }
         else if(commandWord.equals("drop")){
             dropItem(command);
@@ -244,7 +243,7 @@ public class Game
     
     private void printItemInfo(){
         for(Item a : currentRoom.getItems()){
-            System.out.println("Localizada: " + a.getItem() + " \tQue pesa: " + a.getPeso() + "Kg");
+            System.out.println("Localizada: " + a.getItem() + " \tQue pesa: " + a.getPeso() + "Kg\tTransportable: " + a.getCanTake());
         }
         //System.out.println("Localizada: " + currentRoom.getItem() + " \tQue pesa: " + currentRoom.getPeso() + "Kg");
     }
@@ -264,8 +263,8 @@ public class Game
             if(a.getItem().equals(command.getSecondWord())){
                 existe = true;
                 if(a.getCanTake()){
-                    if(pesoTotal(a.getPeso()) < PESO_MAXIMO){
-                        itemsPlayer.add(a);
+                    if(player.comparaPesos(a.getPeso())){
+                        player.addItemsPlayer(a);
                         currentRoom.getItems().remove(a);
                         return;
                     }else{
@@ -279,37 +278,19 @@ public class Game
         if(!existe){
             System.out.println("Este item no existe en la habitación");            
         }
-    }
-    
-    private double pesoTotal(double pesoItem){
-        double total = 0;
-        for(Item a : itemsPlayer){
-            total += a.getPeso();
-        }
-        return (total + pesoItem);
-    }
-    
-    private void printItemsPlayer(){
-        System.out.println("El jugador porta: ");
-        for(Item a : itemsPlayer){
-            System.out.println(a.getItem() + " \tQue pesa: " + a.getPeso());
-        }
-        System.out.println("El jugador arrastra: " + pesoTotal(0) + "Kg\tDe un máximo que puede pujar de: " + PESO_MAXIMO);
-    }    
+    }   
     
     private void dropItem(Command command){
         boolean existe = false;
-        int count = 0;
-        for(Item a : itemsPlayer){
-            count++;
+        for(Item a : player.getItemsPlayer()){
             if(a.getItem().equals(command.getSecondWord())){
                 existe = true;
                 currentRoom.getItems().add(a);
-                itemsPlayer.remove(a);     
+                player.removeItemsPlayer(a);     
                 return;
             }
         }
-        if(count < 1){
+        if(player.getItemsPlayer() == null || player.getItemsPlayer().size() == 0){
             System.out.println("No hay nada que dejar");
         }else{
             if(!existe){
