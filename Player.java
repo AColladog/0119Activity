@@ -21,4 +21,24 @@ public class Player
     public ArrayList<Item> getItemsPlayer(){
         return itemsPlayer;
     }
+    
+    private double pesoTotal(double pesoItem){
+        double total = 0;
+        for(Item a : itemsPlayer){
+            total += a.getPeso();
+        }
+        return (total + pesoItem);
+    }
+    
+    public boolean comparaPesos(double pesoItem){
+        boolean menor = false;
+        if(pesoTotal(pesoItem) < PESO_MAXIMO){
+            menor = true;
+        }
+        return menor;
+    }
+    
+    public void addItemsPlayer(Item item){
+        itemsPlayer.add(item);
+    } 
 }
