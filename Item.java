@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 /**
  * Aquí crearemos una clase donde instanciaremos los items 
  * @author ACG 
@@ -7,16 +6,16 @@ import java.util.ArrayList;
 public class Item
 {
     private double peso;
-    private String item;
+    private String itemDescription;
     private boolean canTake;
 
     /**
      * Constructor for objects of class Item
      */
-    public Item(String item, double peso, boolean canTake)
+    public Item(String itemDescription, double peso, boolean canTake)
     {
         // initialise instance variables
-        this.item = item;
+        this.itemDescription = itemDescription;
         this.peso = peso;
         this.canTake = canTake;
     }
@@ -24,9 +23,9 @@ public class Item
     /**
      * @return  el String del item 
      */
-    public String getItem()
+    public String getItemDescription()
     {   
-        return item;
+        return itemDescription;
     }
     
     /**

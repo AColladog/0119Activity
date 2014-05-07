@@ -243,7 +243,7 @@ public class Game
     
     private void printItemInfo(){
         for(Item a : currentRoom.getItems()){
-            System.out.println("Localizada: " + a.getItem() + " \tQue pesa: " + a.getPeso() + "Kg\tTransportable: " + a.getCanTake());
+            System.out.println("Localizada: " + a.getItemDescription() + " \tQue pesa: " + a.getPeso() + "Kg\tTransportable: " + a.getCanTake());
         }
     }
     
@@ -259,7 +259,7 @@ public class Game
     private void takeItem(Command command){
         boolean existe = false;
         for(Item a : currentRoom.getItems()){
-            if(a.getItem().equals(command.getSecondWord())){
+            if(a.getItemDescription().equals(command.getSecondWord())){
                 existe = true;
                 if(a.getCanTake()){
                     if(player.comparaPesos(a.getPeso())){
@@ -282,7 +282,7 @@ public class Game
     private void dropItem(Command command){
         boolean existe = false;
         for(Item a : player.getItemsPlayer()){
-            if(a.getItem().equals(command.getSecondWord())){
+            if(a.getItemDescription().equals(command.getSecondWord())){
                 existe = true;
                 currentRoom.getItems().add(a);
                 player.removeItemsPlayer(a);     
