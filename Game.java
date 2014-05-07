@@ -155,9 +155,7 @@ public class Game
             goRoom(command);
         }
         else if (commandWord.equals("look")) {
-            System.out.println();
-            printLocationInfo();            
-            printItemInfo();            
+            look();           
         }
         else if (commandWord.equals("eat")) {
             System.out.println("You have eaten now and you are not hungry any more");
@@ -238,14 +236,15 @@ public class Game
     }
 
     private void printLocationInfo(){
+        System.out.println();
         System.out.println(currentRoom.getLongDescription());
+        printItemInfo();        
     }
     
     private void printItemInfo(){
         for(Item a : currentRoom.getItems()){
             System.out.println("Localizada: " + a.getItem() + " \tQue pesa: " + a.getPeso() + "Kg\tTransportable: " + a.getCanTake());
         }
-        //System.out.println("Localizada: " + currentRoom.getItem() + " \tQue pesa: " + currentRoom.getPeso() + "Kg");
     }
     
     private void goBack(){
@@ -290,12 +289,16 @@ public class Game
                 return;
             }
         }
-        if(player.getItemsPlayer() == null || player.getItemsPlayer().size() == 0){
+        if(player.getItemsPlayer().size() == 0){
             System.out.println("No hay nada que dejar");
         }else{
             if(!existe){
                 System.out.println("Ese item no se encuentra en posesión");
             }
         }
+    }
+    
+    private void look(){
+        printLocationInfo();
     }
 }
