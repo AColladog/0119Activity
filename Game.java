@@ -21,7 +21,6 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    //private Stack<Room> habitacionAnterior;
     private Player player;
 
     /**
@@ -31,8 +30,7 @@ public class Game
     {
         player = new Player();
         createRooms();
-        parser = new Parser();
-        //habitacionAnterior = new Stack<>();        
+        parser = new Parser();       
     }
 
     /**
@@ -209,86 +207,5 @@ public class Game
         else {
             return true;  // signal that we want to quit
         }
-    }
-
-    /*
-     * private void printLocationInfo(){
-        System.out.println();
-        System.out.println(currentRoom.getLongDescription());
-        printItemInfo();        
-    }
-     */
-    
-    
-    /**
-     * private void printItemInfo(){
-        for(Item a : currentRoom.getItems()){
-            System.out.println("Localizada: " + a.getItemDescription() + " \tQue pesa: " + a.getPeso() + "Kg\tTransportable: " + a.getCanTake());
-        }
-    }
-     */
-    /**
-     * private void goBack(){
-        if(habitacionAnterior.empty()){
-            System.out.println("No ha habido desplazamiento previo");
-        }else{
-            currentRoom = habitacionAnterior.pop();
-            player.printLocationInfo();
-        }
-    }
-     */
-    
-    /**
-     * private void takeItem(Command command){
-        boolean existe = false;
-        for(Item a : currentRoom.getItems()){
-            if(a.getItemDescription().equals(command.getSecondWord())){
-                existe = true;
-                if(a.getCanTake()){
-                    if(player.comparaPesos(a.getPeso())){
-                        player.addItemsPlayer(a);
-                        currentRoom.getItems().remove(a);
-                        return;
-                    }else{
-                        System.out.println("Sobrepasa los límites del peso");
-                    }
-                }else{
-                    System.out.println("Este item no se puede mover, es fijo");
-                }
-            }
-        }
-        if(!existe){
-            System.out.println("Este item no existe en la habitación");            
-        }
-    } 
-     */
-    
-      /**
-       * private void dropItem(Command command){
-        boolean existe = false;
-        for(Item a : player.getItemsPlayer()){
-            if(a.getItemDescription().equals(command.getSecondWord())){
-                existe = true;
-                currentRoom.getItems().add(a);
-                player.removeItemsPlayer(a);     
-                return;
-            }
-        }
-        if(player.getItemsPlayer().size() == 0){
-            System.out.println("No hay nada que dejar");
-        }else{
-            if(!existe){
-                System.out.println("Ese item no se encuentra en posesión");
-            }
-        }
-    }
-       */
-    
-    /**
-     * private void look(){
-        player.printLocationInfo();
-    }
-     */
-    
-    
+    }    
 }

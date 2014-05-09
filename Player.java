@@ -124,9 +124,7 @@ public class Player
         printLocationInfo();
         for(Item a : currentRoom.getItems()){
             a.printItemInfo();  
-        }
-        
-        
+        }       
     }
     
     public void habitacionAnterior(Room previous, Room next){

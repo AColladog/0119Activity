@@ -31,7 +31,6 @@ public class Room
         this.description = description;
         location = new HashMap<>();
         items = new ArrayList<>();
-
     }
 
     /**
