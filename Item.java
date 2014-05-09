@@ -41,4 +41,8 @@ public class Item
     public boolean getCanTake(){
         return canTake;
     }
+    
+    public void printItemInfo(){        
+        System.out.println("Localizada: " + getItemDescription() + " \tQue pesa: " + getPeso() + "Kg\tTransportable: " + getCanTake()); 
+    }
 }

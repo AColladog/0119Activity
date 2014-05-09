@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.Set;
 import java.util.ArrayList;
 /**
  * Class Room - a room in an adventure game.
@@ -102,7 +101,7 @@ public class Room
      * @return A description of the room, including exits.
      */
     public String getLongDescription(){
-        String longDescription = "You are in the " + description +"\nExits: "+ getExitString();
+        String longDescription = "You are in the " + getDescription() +"\nExits: "+ getExitString();
         return longDescription;
     }   
 }

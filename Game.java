@@ -1,4 +1,4 @@
-import java.util.Stack;
+//import java.util.Stack;
 import java.util.ArrayList;
 /**
  *  This class is the main class of the "World of Zuul" application. 
@@ -21,7 +21,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    private Stack<Room> habitacionAnterior;
+    //private Stack<Room> habitacionAnterior;
     private Player player;
 
     /**
@@ -29,10 +29,10 @@ public class Game
      */
     public Game() 
     {
+        player = new Player();
         createRooms();
         parser = new Parser();
-        habitacionAnterior = new Stack<>();
-        player = new Player();
+        //habitacionAnterior = new Stack<>();        
     }
 
     /**
@@ -99,7 +99,7 @@ public class Game
         profes.setExit("north", primero);
         profes.setExit("southwest", conserjeria);
         
-        currentRoom = cnp;  // start game outside
+        player.setCurrentRoom(cnp);  // start game outside
     }
 
     /**
@@ -130,7 +130,7 @@ public class Game
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type 'help' if you need help.");
         System.out.println();        
-        printLocationInfo();
+        player.printLocationInfo();
     }
 
     /**
@@ -152,10 +152,10 @@ public class Game
             printHelp();
         }
         else if (commandWord.equals("go")) {
-            goRoom(command);
+            player.goRoom(command);
         }
         else if (commandWord.equals("look")) {
-            look();           
+            player.look();           
         }
         else if (commandWord.equals("eat")) {
             System.out.println("You have eaten now and you are not hungry any more");
@@ -164,17 +164,17 @@ public class Game
             wantToQuit = quit(command);
         }
         else if (commandWord.equals("back")) {
-            goBack();
+            player.goBack();
         }
         else if(commandWord.equals("take")){
-            takeItem(command);
+            player.takeItem(command);
         }
         else if(commandWord.equals("items")){
             System.out.println();
             player.printItemsPlayer();
         }
         else if(commandWord.equals("drop")){
-            dropItem(command);
+            player.dropItem(command);
         }
 
         return wantToQuit;
@@ -193,31 +193,7 @@ public class Game
         System.out.println("around at the university.");
         parser.imprimeComandos();
         System.out.println();
-    }
-
-    /** 
-     * Try to go in one direction. If there is an exit, enter
-     * the new room, otherwise print an error message.
-     */
-    private void goRoom(Command command) 
-    {
-        if(!command.hasSecondWord()) {
-            // if there is no second word, we don't know where to go...
-            System.out.println("Go where?");
-            return;
-        }
-        Room nextRoom = currentRoom.getExit(command.getSecondWord());
-
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
-        }
-        else {
-            habitacionAnterior.push(currentRoom);
-            currentRoom = nextRoom;
-            printLocationInfo();
-        }
-         
-    }
+    }    
 
     /** 
      * "Quit" was entered. Check the rest of the command to see
@@ -235,28 +211,35 @@ public class Game
         }
     }
 
-    private void printLocationInfo(){
+    /*
+     * private void printLocationInfo(){
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
         printItemInfo();        
     }
+     */
     
-    private void printItemInfo(){
+    
+    /**
+     * private void printItemInfo(){
         for(Item a : currentRoom.getItems()){
             System.out.println("Localizada: " + a.getItemDescription() + " \tQue pesa: " + a.getPeso() + "Kg\tTransportable: " + a.getCanTake());
         }
     }
-    
-    private void goBack(){
+     */
+    /**
+     * private void goBack(){
         if(habitacionAnterior.empty()){
             System.out.println("No ha habido desplazamiento previo");
         }else{
             currentRoom = habitacionAnterior.pop();
-            printLocationInfo();
+            player.printLocationInfo();
         }
     }
+     */
     
-    private void takeItem(Command command){
+    /**
+     * private void takeItem(Command command){
         boolean existe = false;
         for(Item a : currentRoom.getItems()){
             if(a.getItemDescription().equals(command.getSecondWord())){
@@ -277,9 +260,11 @@ public class Game
         if(!existe){
             System.out.println("Este item no existe en la habitación");            
         }
-    }   
+    } 
+     */
     
-    private void dropItem(Command command){
+      /**
+       * private void dropItem(Command command){
         boolean existe = false;
         for(Item a : player.getItemsPlayer()){
             if(a.getItemDescription().equals(command.getSecondWord())){
@@ -297,8 +282,13 @@ public class Game
             }
         }
     }
+       */
     
-    private void look(){
-        printLocationInfo();
+    /**
+     * private void look(){
+        player.printLocationInfo();
     }
+     */
+    
+    
 }
