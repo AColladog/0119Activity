@@ -23,14 +23,24 @@ public class Player
         habitacionAnterior = new Stack<>();
         item = null;
     }
-    
+
+    /**
+     * Seleccionamos la habitación que será la de partida
+     */
     public void setCurrentRoom(Room room){
         currentRoom = room;
     }
+
+    /**
+     * Nos devuelve el ArrayList de items que tiene el jugador
+     */
     public ArrayList<Item> getItemsPlayer(){
         return itemsPlayer;
     }
-    
+
+    /**
+     * Nos devuelve el peso total que tiene el jugador en el carrito
+     */
     private double pesoTotal(double pesoItem){
         double total = 0;
         for(Item a : itemsPlayer){
@@ -38,37 +48,42 @@ public class Player
         }
         return (total + pesoItem);
     }
-    
-    public boolean comparaPesos(double pesoItem){
+
+    /**
+     * Compara que el peso true si es menor del límite y false en caso contrario
+     */public boolean comparaPesos(double pesoItem){
         boolean menor = false;
         if(pesoTotal(pesoItem) < PESO_MAXIMO){
             menor = true;
         }
         return menor;
     }
-    
+
     public void addItemsPlayer(Item item){
         itemsPlayer.add(item);
     } 
-    
+
     public void printItemsPlayer(){
-        System.out.println("El jugador porta: ");        
-        for(Item a : itemsPlayer){
-            System.out.println(a.getItemDescription() + " \tQue pesa: " + a.getPeso());
+        if(itemsPlayer.size() == 0){
+            System.out.println("El jugador no lleva nada en el carrito");
+        }else{
+            System.out.println("El jugador lleva en el carrito: ");        
+            for(Item a : itemsPlayer){
+                System.out.println(a.getItemDescription() + " \tQue pesa: " + a.getPeso());
+            }
+            System.out.println("El jugador arrastra: " + pesoTotal(0) + "Kg\tDe un máximo que puede pujar de: " + PESO_MAXIMO);
         }
-        System.out.println("El jugador arrastra: " + pesoTotal(0) + "Kg\tDe un máximo que puede pujar de: " + PESO_MAXIMO);
     }
-    
+
     public void removeItemsPlayer(Item item){
         itemsPlayer.remove(item);
     }
-    
+
     public void printLocationInfo(){
         System.out.println();
         System.out.println(currentRoom.getLongDescription()); 
-        
     }
-    
+
     public void goBack(){
         if(habitacionAnterior.empty()){
             System.out.println("No ha habido desplazamiento previo");
@@ -77,7 +92,7 @@ public class Player
             printLocationInfo();
         }
     }
-    
+
     public void takeItem(Command command){
         boolean existe = false;
         for(Item a : currentRoom.getItems()){
@@ -100,7 +115,7 @@ public class Player
             System.out.println("Este item no existe en la habitación");            
         }
     } 
-    
+
     public void dropItem(Command command){
         boolean existe = false;
         for(Item a : getItemsPlayer()){
@@ -119,25 +134,25 @@ public class Player
             }
         }
     }
-    
+
     public void look(){
         printLocationInfo();
         for(Item a : currentRoom.getItems()){
             a.printItemInfo();  
         }       
     }
-    
+
     public void habitacionAnterior(Room previous, Room next){
-         habitacionAnterior.push(previous);
-         currentRoom = next;
-         printLocationInfo();
+        habitacionAnterior.push(previous);
+        currentRoom = next;
+        printLocationInfo();
     }
-    
+
     /** 
      * Try to go in one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
      */
-     void goRoom(Command command) 
+    void goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
@@ -154,6 +169,6 @@ public class Player
             currentRoom = nextRoom;
             habitacionAnterior(currentRoom, nextRoom);
         }
-         
+
     }
 }

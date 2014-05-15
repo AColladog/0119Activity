@@ -11,6 +11,8 @@
 
 public class CommandWords
 {
+    //Declared enum type
+    public enum Option {GO, QUIT, HELP, LOOK, EAT, BACK, TAKE, ITEMS, DROP, UNKNOWN};
     // a constant array that holds all valid command words
     private static final String[] validCommands = {
             "go", "quit", "help", "look", "eat", "back", "take", "items", "drop"
