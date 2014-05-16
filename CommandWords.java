@@ -1,3 +1,4 @@
+import java.util.HashMap;
 /**
  * This class is part of the "World of Zuul" application. 
  * "World of Zuul" is a very simple, text based adventure game.  
@@ -11,19 +12,34 @@
 
 public class CommandWords
 {
-    //Declared enum type
-    public enum Option {GO, QUIT, HELP, LOOK, EAT, BACK, TAKE, ITEMS, DROP, UNKNOWN};
     // a constant array that holds all valid command words
-    private static final String[] validCommands = {
-            "go", "quit", "help", "look", "eat", "back", "take", "items", "drop"
-        };
+    private HashMap<String, Option> validCommands;
 
     /**
      * Constructor - initialise the command words.
      */
     public CommandWords()
     {
-        // nothing to do at the moment...
+        validCommands = new HashMap<>();
+        validCommands.put("go", Option.GO);
+        validCommands.put("quit", Option.QUIT);
+        validCommands.put("help", Option.HELP);
+        validCommands.put("look", Option.LOOK);
+        validCommands.put("eat", Option.EAT);
+        validCommands.put("back", Option.BACK);
+        validCommands.put("take", Option.TAKE);
+        validCommands.put("items", Option.ITEMS);
+        validCommands.put("drop", Option.DROP);
+        validCommands.put("unknown", Option.UNKNOWN);
+    }
+    
+    /**
+     * Define an command.
+     * @param variable The commandt.
+     * @param valor The value of command.
+     */
+    public void setExit(String variable, Option valor){
+        validCommands.put(variable, valor);
     }
 
     /**
@@ -33,20 +49,23 @@ public class CommandWords
      */
     public boolean isCommand(String aString)
     {
-        for(int i = 0; i < validCommands.length; i++) {
-            if(validCommands[i].equals(aString))
+        //for(String a : validCommands){
+            if(validCommands.containsKey(aString)){
                 return true;
-        }
+            }
+        //}
+    
         // if we get here, the string was not found in the commands
         return false;
     }
+    
 
     /**
      * Print all valid commands to System.out
      */
     public void showAll(){
         System.out.println("Valid command words: ");
-        for(String comando : validCommands){
+        for(Option comando : validCommands.values()){
             System.out.print(comando + " ");
         }        
     }
