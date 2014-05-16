@@ -145,7 +145,7 @@ public class Game
             return false;
         }
 
-        String commandWord = command.getCommandWord();
+        Option commandWord = command.getCommandWord();
         if (commandWord.equals("help")) {
             printHelp();
         }
