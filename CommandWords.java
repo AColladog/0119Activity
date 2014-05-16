@@ -32,7 +32,7 @@ public class CommandWords
         validCommands.put("drop", Option.DROP);
         validCommands.put("unknown", Option.UNKNOWN);
     }
-    
+
     /**
      * Define an command.
      * @param variable The commandt.
@@ -50,15 +50,14 @@ public class CommandWords
     public boolean isCommand(String aString)
     {
         //for(String a : validCommands){
-            if(validCommands.containsKey(aString)){
-                return true;
-            }
+        if(validCommands.containsKey(aString)){
+            return true;
+        }
         //}
-    
+
         // if we get here, the string was not found in the commands
         return false;
     }
-    
 
     /**
      * Print all valid commands to System.out
@@ -69,4 +68,18 @@ public class CommandWords
             System.out.print(comando + " ");
         }        
     }
+
+    /**
+     * Return the Option associated with a word.
+     * @param commandWord The word to look up (as a string).
+     * @return The Option correspondng to commandWord, or UNKNOWN
+     *         if it is not a valid command word.
+     */
+    public Option getCommandWord(String commandWord){
+        return validCommands.get(commandWord);
+    }
+
+    
+    
+    
 }
