@@ -76,8 +76,11 @@ public class CommandWords
      *         if it is not a valid command word.
      */
     public Option getCommandWord(String commandWord){
-        
-        return validCommands.get(commandWord);
+        Option exit = validCommands.get(commandWord);
+        if(exit == null){
+            exit = validCommands.get("unknown");
+        }
+        return exit;
     }
 
     
