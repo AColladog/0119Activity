@@ -30,7 +30,6 @@ public class CommandWords
         validCommands.put("take", Option.TAKE);
         validCommands.put("items", Option.ITEMS);
         validCommands.put("drop", Option.DROP);
-        validCommands.put("unknown", Option.UNKNOWN);
     }
 
     /**
@@ -78,12 +77,8 @@ public class CommandWords
     public Option getCommandWord(String commandWord){
         Option exit = validCommands.get(commandWord);
         if(exit == null){
-            exit = validCommands.get("unknown");
+            exit = Option.UNKNOWN;
         }
         return exit;
     }
-
-    
-    
-    
 }
