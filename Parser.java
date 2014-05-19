@@ -53,13 +53,8 @@ public class Parser
         }
 
         // Now check whether this word is known. If so, create a command
-        // with it. If not, create a "unknown" command (for unknown command).
-        if(commands.isCommand(word1)) {
-            return new Command(commands.getCommandWord(word1), word2);
-        }
-        else {
-            return new Command(Option.UNKNOWN, word2); 
-        }        
+        // with it. If not, create a "unknown" command (for unknown command).           
+        return new Command(commands.getCommandWord(word1), word2); 
     }
     
     /**
