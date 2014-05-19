@@ -55,8 +55,8 @@ public class CommandWords
      */
     public void showAll(){
         System.out.println("Valid command words: ");
-        for(Option comando : validCommands.values()){
-            System.out.print(comando + " ");
+        for (String key : validCommands.keySet()){
+            System.out.print(key + ", ");
         }        
     }
 
