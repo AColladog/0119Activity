@@ -146,35 +146,36 @@ public class Game
         }
 
         Option commandWord = command.getCommandWord();
-        if (commandWord.equals(Option.HELP)) {
-            printHelp();
+        switch (commandWord){
+        case HELP:
+             printHelp();
+             break;
+        case GO:
+             player.goRoom(command);
+             break;
+        case LOOK:
+             player.look();
+             break;
+        case EAT:
+             System.out.println("You have eaten now and you are not hungry any more");
+             break;
+        case BACK:
+             player.goBack();
+             break;
+        case ITEMS:
+             System.out.println();
+             player.printItemsPlayer();
+             break;
+        case TAKE:
+             player.takeItem(command);
+             break;
+        case QUIT:
+             wantToQuit = quit(command);
+             break;
+        case DROP:
+             player.dropItem(command);
+             break;
         }
-        else if (commandWord.equals(Option.GO)) {
-            player.goRoom(command);
-        }
-        else if (commandWord.equals(Option.LOOK)) {
-            player.look();           
-        }
-        else if (commandWord.equals(Option.EAT)) {
-            System.out.println("You have eaten now and you are not hungry any more");
-        }
-        else if (commandWord.equals(Option.QUIT)) {
-            wantToQuit = quit(command);
-        }
-        else if (commandWord.equals(Option.BACK)) {
-            player.goBack();
-        }
-        else if(commandWord.equals(Option.TAKE)){
-            player.takeItem(command);
-        }
-        else if(commandWord.equals(Option.ITEMS)){
-            System.out.println();
-            player.printItemsPlayer();
-        }
-        else if(commandWord.equals(Option.DROP)){
-            player.dropItem(command);
-        }
-
         return wantToQuit;
     }
     
