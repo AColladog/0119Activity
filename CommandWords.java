@@ -46,16 +46,8 @@ public class CommandWords
      * @return true if a given string is a valid command,
      * false if it isn't.
      */
-    public boolean isCommand(String aString)
-    {
-        //for(String a : validCommands){
-        if(validCommands.containsKey(aString)){
-            return true;
-        }
-        //}
-
-        // if we get here, the string was not found in the commands
-        return false;
+    public boolean isCommand(String aString){        
+            return validCommands.containsKey(aString);        
     }
 
     /**
