@@ -1,4 +1,4 @@
-import java.util.HashMap;
+import java.util.ArrayList;
 /**
  * This class is part of the "World of Zuul" application. 
  * "World of Zuul" is a very simple, text based adventure game.  
@@ -12,33 +12,14 @@ import java.util.HashMap;
 
 public class CommandWords
 {
-    // a constant array that holds all valid command words
-    private HashMap<String, Option> validCommands;
+    private Option option;
 
     /**
      * Constructor - initialise the command words.
      */
     public CommandWords()
     {
-        validCommands = new HashMap<>();
-        validCommands.put("ir", Option.GO);
-        validCommands.put("salir", Option.QUIT);
-        validCommands.put("ayuda", Option.HELP);
-        validCommands.put("ver", Option.LOOK);
-        validCommands.put("comer", Option.EAT);
-        validCommands.put("atras", Option.BACK);
-        validCommands.put("coger", Option.TAKE);
-        validCommands.put("objetos", Option.ITEMS);
-        validCommands.put("dejar", Option.DROP);
-    }
 
-    /**
-     * Define an command.
-     * @param variable The commandt.
-     * @param valor The value of command.
-     */
-    public void setExit(String variable, Option valor){
-        validCommands.put(variable, valor);
     }
 
     /**
@@ -47,7 +28,13 @@ public class CommandWords
      * false if it isn't.
      */
     public boolean isCommand(String aString){        
-            return validCommands.containsKey(aString);        
+        for(Option key : option.values()) {
+            if(key.getCommand().equals(aString))
+                if(key != Option.UNKNOWN){
+                    return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -55,8 +42,10 @@ public class CommandWords
      */
     public void showAll(){
         System.out.println("Valid command words: ");
-        for (String key : validCommands.keySet()){
-            System.out.print(key + ", ");
+        for(Option command : option.values()){
+            if(command != Option.UNKNOWN){
+                System.out.print(command.getCommand() + " ");
+            }
         }        
     }
 
@@ -67,10 +56,14 @@ public class CommandWords
      *         if it is not a valid command word.
      */
     public Option getCommandWord(String commandWord){
-        Option exit = validCommands.get(commandWord);
-        if(exit == null){
-            exit = Option.UNKNOWN;
+        Option wordOption = Option.UNKNOWN;
+        if(isCommand(commandWord)){
+            for(Option key : option.values()) {
+                if(key.getCommand().equals(commandWord)){
+                    wordOption = key;
+                }
+            }
         }
-        return exit;
+        return wordOption;
     }
 }
