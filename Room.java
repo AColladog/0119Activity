@@ -45,8 +45,8 @@ public class Room
     /**
      * creamos el ArrayList de items
      */
-    public void addItem(String item, double peso, boolean canTake, boolean magic){
-        items.add(new Item(item, peso, canTake, magic));
+    public void addItem(String item, double peso, boolean canTake, boolean magic, Room initialRoom){
+        items.add(new Item(item, peso, canTake, magic, initialRoom));
     }
     
     /**

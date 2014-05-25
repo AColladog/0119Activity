@@ -9,17 +9,33 @@ public class Item
     private String itemDescription;
     private boolean canTake;
     private boolean magic;
+    private Room referenceRoom;
 
     /**
      * Constructor for objects of class Item
      */
-    public Item(String itemDescription, double peso, boolean canTake, boolean magic)
+    public Item(String itemDescription, double peso, boolean canTake, boolean magic, Room referenceRoom)
     {
         // initialise instance variables
         this.itemDescription = itemDescription;
         this.peso = peso;
         this.canTake = canTake;
         this.magic = magic;
+        this.referenceRoom = referenceRoom;
+    }
+    
+    /**
+     * 
+     */
+    public Room getReferenceRoom(){
+        return referenceRoom;
+    }
+    
+    /**
+     * 
+     */
+    public void setReferenceRoom(Room referenceRoom){
+        this.referenceRoom = referenceRoom;
     }
 
     /**

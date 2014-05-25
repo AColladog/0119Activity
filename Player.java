@@ -100,9 +100,20 @@ public class Player
                 existe = true;
                 if(a.getCanTake()){
                     if(comparaPesos(a.getPeso())){
-                        addItemsPlayer(a);
-                        currentRoom.getItems().remove(a);
-                        return;
+                        if(a.getIsMagic()){
+                            if(takeMagic(a.getItemDescription())){
+                                System.out.println("NO SE PUEDE COGER MAS DE UNA CARTA MÁGICA");
+                            }else{
+                                System.out.println("COGIDA CARTA MÁGICA");
+                                addItemsPlayer(a);
+                                a.setReferenceRoom(currentRoom);
+                                return;
+                            }
+                        }else{
+                            addItemsPlayer(a);
+                            currentRoom.getItems().remove(a);
+                            return;
+                        }
                     }else{
                         System.out.println("Sobrepasa los límites del peso");
                     }
@@ -121,9 +132,16 @@ public class Player
         for(Item a : getItemsPlayer()){
             if(a.getItemDescription().equals(command.getSecondWord())){
                 existe = true;
-                currentRoom.getItems().add(a);
-                removeItemsPlayer(a);     
-                return;
+                if(a.getIsMagic()){
+                    System.out.println("CARTA MÁGICA ACTIVADA, REGRESANDO A " + a.getReferenceRoom().getDescription());                    
+                    currentRoom = a.getReferenceRoom();
+                    removeItemsPlayer(a);
+                    return;
+                }else{
+                    currentRoom.getItems().add(a);
+                    removeItemsPlayer(a);     
+                    return;
+                }
             }
         }
         if(getItemsPlayer().size() == 0){
@@ -152,7 +170,7 @@ public class Player
      * Try to go in one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
      */
-    void goRoom(Command command) 
+    public void goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
@@ -170,5 +188,18 @@ public class Player
             habitacionAnterior(currentRoom, nextRoom);
         }
 
+    }
+    
+    /**
+     * return true si se puede coger
+     */
+    private boolean takeMagic(String descripcion){
+        boolean take = false;
+        for(Item i : itemsPlayer){
+            if(i.getItemDescription().equals(descripcion)){
+                take = true;
+            }            
+        }
+        return take;
     }
 }

@@ -52,23 +52,23 @@ public class Game
         bachiller2 = new Room("bachiller2");
         patio = new Room("patio");
         // damos items a las rooms
-        conserjeria.addItem("fotocopiadora", 45, true, false);
-        cnp.addItem("cartera", 1.5, true, false);
-        cnp.addItem("navaja", 0.3, true, false);
-        profes.addItem("mesa", 80, false, false);
-        fp2.addItem("silla", 7, true, false);
-        fp2.addItem("tijera", 7, true, false);
-        fp1.addItem("pda", 2, true, false);
-        primero.addItem("maceta", 5, true, false);
-        segundo.addItem("papelera", 0.5, true, false);
-        bachiller1.addItem("tiza", 0.04, true, false);
-        bachiller1.addItem("pizarra", 30, false, false);
-        bachiller2.addItem("grapadora", 0.6, true, false);
-        patio.addItem("porteria", 60, false, false);
-        patio.addItem("canasta", 300, false, false);
+        conserjeria.addItem("fotocopiadora", 45, true, false, null);
+        cnp.addItem("cartera", 1.5, true, false, null);
+        cnp.addItem("navaja", 0.3, true, false, null);
+        profes.addItem("mesa", 80, false, false, null);
+        fp2.addItem("silla", 7, true, false, null);
+        fp2.addItem("tijera", 7, true, false, null);
+        fp1.addItem("pda", 2, true, false, null);
+        primero.addItem("maceta", 5, true, false, null);
+        segundo.addItem("papelera", 0.5, true, false, null);
+        bachiller1.addItem("tiza", 0.04, true, false, null);
+        bachiller1.addItem("pizarra", 30, false, false, null);
+        bachiller2.addItem("grapadora", 0.6, true, false, null);
+        patio.addItem("porteria", 60, false, false, null);
+        patio.addItem("canasta", 300, false, false, null);
         Room[] habitaciones = {conserjeria, cnp, profes, primero, segundo, fp2, fp1, bachiller1, bachiller2, patio};
         for(int i = 0; i < habitaciones.length; i++){
-            habitaciones[i].addItem("magicCard", 0.001, false, true);
+            habitaciones[i].addItem("magicCard", 0.001, true, true, null);
         }
 
         // initialise room exits
